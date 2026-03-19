@@ -21,7 +21,9 @@
 
     <select id="producto"></select>
     <input type="number" id="cantidad" placeholder="Cantidad">
+    
     <button onclick="vender()">Vender</button>
+    <button onclick="facturar()">Facturar</button> <!-- 🔥 NUEVO -->
 
     <p id="mensaje"></p>
 
@@ -104,6 +106,36 @@ function eliminarVenta(i) {
 
     mostrarVentas();
     cargarProductos();
+}
+
+/* 🔥 FACTURAR */
+function facturar() {
+
+    if (ventas.length === 0) {
+        alert("No hay ventas para facturar");
+        return;
+    }
+
+    let factura = "----- FACTURA -----\n\n";
+    let totalGeneral = 0;
+
+    ventas.forEach(v => {
+        let producto = productos.find(p => p.nombre === v.nombre);
+        let precio = producto ? Number(producto.precio) : 0;
+        let total = precio * v.cantidad;
+
+        factura += `Producto: ${v.nombre}\n`;
+        factura += `Cantidad: ${v.cantidad}\n`;
+        factura += `Precio: $${precio}\n`;
+        factura += `Total: $${total}\n`;
+        factura += `------------------\n`;
+
+        totalGeneral += total;
+    });
+
+    factura += `\nTOTAL GENERAL: $${totalGeneral}`;
+
+    alert(factura);
 }
 
 cargarProductos();

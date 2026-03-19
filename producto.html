@@ -65,6 +65,15 @@ function mostrar() {
 }
 
 mostrar();
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("modoOscuro", document.body.classList.contains("dark"));
+}
+
+if (localStorage.getItem("modoOscuro") === "true") {
+    document.body.classList.add("dark");
+}
 </script>
 
 </body>

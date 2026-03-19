@@ -4,7 +4,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+nav {
+    display: flex;
+    justify-content: center; /* centra todo */
+    align-items: center;
+    gap: 40px;
+    background: #1a73e8;
+    padding: 15px;
+}
 
+nav h2 {
+    position: absolute;
+    left: 20px; /* deja el logo a la izquierda */
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
 /* VARIABLES (modo moderno) */
 :root {
     --color-primary: #1a73e8;

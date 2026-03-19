@@ -5,6 +5,58 @@
     box-sizing: border-box;
 }
 nav {
+    background: rgba(26, 115, 232, 0.95);
+    color: white;
+    padding: 15px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* centra horizontal */
+    justify-content: center; /* centra vertical */
+    
+    text-align: center;
+}
+
+/* título centrado */
+nav h2 {
+    margin-bottom: 10px;
+}
+
+/* menú centrado */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;
+    gap: 25px;
+    padding: 0;
+}
+
+/* links */
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    padding: 5px 10px;
+}
+
+/* efecto animado */
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: white;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+nav {
     display: flex;
     justify-content: center; /* centra todo */
     align-items: center;

@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="styles.css">
 
 <style>
-/* MODAL FACTURA */
 .modal {
     display: none;
     position: fixed;
@@ -74,7 +73,6 @@
     </table>
 </div>
 
-<!-- 🔥 MODAL FACTURA -->
 <div id="modalFactura" class="modal">
     <div class="modal-content">
         <h2>🧾 Factura</h2>
@@ -132,11 +130,19 @@ function mostrarVentas() {
     });
 }
 
-/* 🔥 ELIMINAR VENTA + DEVOLVER STOCK */
+/* 🔥 BLOQUEO: NO ELIMINAR SI HAY STOCK */
 function eliminarVenta(i) {
     let venta = ventas[i];
 
     let producto = productos.find(p => p.nombre === venta.nombre);
+
+    // ❌ BLOQUEA SI HAY STOCK
+    if (producto && producto.stock > 0) {
+        alert("❌ No puedes eliminar esta venta porque el producto tiene stock");
+        return;
+    }
+
+    // ✅ SOLO SI NO HAY STOCK
     if (producto) {
         producto.stock += venta.cantidad;
     }
@@ -150,7 +156,7 @@ function eliminarVenta(i) {
     cargarProductos();
 }
 
-/* 🔥 FACTURAR CON VENTANA */
+/* FACTURA */
 function facturar() {
 
     if (ventas.length === 0) {

@@ -3,147 +3,88 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-.card {
-    flex: 1;
-    background: #1a73e8;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-}
-.box {
-    background: #ffffff;
-    color: #0f172a; /* TEXTO OSCURO */
-    padding: 10px;
-    border-left: 4px solid #1a73e8;
-    border-radius: 8px;
-    font-size: 14px;
-}
-.tabla-box {
-    background: white;
-    color: #0f172a;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-/* encabezado */
-th {
-    background: #1a73e8;
-    color: white;
-    font-size: 14px;
-}
-
-/* filas */
-td {
-    font-size: 13px;
-    color: #0f172a;
-}
-.tabla-box {
-    background: white;
-    color: #0f172a;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-/* encabezado */
-th {
-    background: #1a73e8;
-    color: white;
-    font-size: 14px;
-}
-
-/* filas */
-td {
-    font-size: 13px;
-    color: #0f172a;
-}
-body {
-    background: #f4f6f8;
-    color: #0f172a;
-}
-.card h3 {
-    font-size: 14px;
-}
-
-.card p {
-    font-size: 18px;
-    font-weight: bold;
-}
-.top-panel {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
     gap: 10px;
     margin: 10px 0;
 }
-/* MENSAJES */
+
+/* ===== MENSAJES ===== */
 .box {
-    background: white;
-    padding: 15px;
-    border-left: 5px solid #1a73e8;
-    border-radius: 10px;
+    background: #ffffff;
+    color: #000; /* NEGRO FUERTE */
+    padding: 12px;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
     text-align: center;
+    font-weight: 500;
 }
 
-/* CARDS CENTRO */
+/* ===== CARDS ===== */
 .cards {
     display: flex;
-    justify-content: space-between;
     gap: 10px;
 }
 
 .card {
     flex: 1;
-    background: linear-gradient(135deg, #1a73e8, #2563eb);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
+    background: #2563eb; /* AZUL LIMPIO */
+    color: #ffffff; /* BLANCO FUERTE */
+    padding: 12px;
+    border-radius: 8px;
     text-align: center;
 }
 
+/* TEXTO CARDS */
+.card h3 {
+    font-size: 14px;
+    color: #e0f2fe; /* CLARO */
+}
+
 .card p {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
+    color: #ffffff; /* BLANCO FUERTE */
 }
 
 /* ===== PANEL INFERIOR ===== */
 .bottom-panel {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 15px;
 }
 
-/* TABLAS */
+/* ===== TABLAS ===== */
 .tabla-box {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    background: #ffffff;
+    color: #000;
+    padding: 12px;
+    border-radius: 8px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
+/* ENCABEZADO */
 th {
-    background: #1a73e8;
-    color: white;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
 }
 
-td, th {
-    padding: 10px;
-    text-align: center;
+/* CELDAS */
+td {
+    font-size: 13px;
+    color: #000; /* NEGRO */
 }
 
+/* FILAS */
 tr:nth-child(even) {
     background: #f1f5f9;
 }
 
-/* RESPONSIVE */
+/* ===== BODY ===== */
+body {
+    background: #f4f6f8;
+    color: #000;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .top-panel {
         grid-template-columns: 1fr;

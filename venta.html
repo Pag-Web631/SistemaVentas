@@ -28,7 +28,12 @@
     <h2>Historial</h2>
     <table>
         <thead>
-            <tr><th>Producto</th><th>Cantidad</th><th>Fecha</th></tr>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+            </tr>
         </thead>
         <tbody id="historial"></tbody>
     </table>
@@ -63,24 +68,42 @@ function vender() {
         localStorage.setItem("productos", JSON.stringify(productos));
         localStorage.setItem("ventas", JSON.stringify(ventas));
 
-        mensaje.innerText = "Venta realizada ✅";
+        mensaje.innerText = "Venta realizada";
+
         cargarProductos();
         mostrarVentas();
-    } else {
-        mensaje.innerText = "Stock insuficiente ❌";
     }
 }
 
 function mostrarVentas() {
     historial.innerHTML = "";
-    ventas.forEach(v => {
+    ventas.forEach((v, i) => {
         historial.innerHTML += `
         <tr>
             <td>${v.nombre}</td>
             <td>${v.cantidad}</td>
             <td>${v.fecha}</td>
+            <td><button onclick="eliminarVenta(${i})">🗑️</button></td>
         </tr>`;
     });
+}
+
+/* 🔥 ELIMINAR VENTA + DEVOLVER STOCK */
+function eliminarVenta(i) {
+    let venta = ventas[i];
+
+    let producto = productos.find(p => p.nombre === venta.nombre);
+    if (producto) {
+        producto.stock += venta.cantidad;
+    }
+
+    ventas.splice(i, 1);
+
+    localStorage.setItem("productos", JSON.stringify(productos));
+    localStorage.setItem("ventas", JSON.stringify(ventas));
+
+    mostrarVentas();
+    cargarProductos();
 }
 
 cargarProductos();

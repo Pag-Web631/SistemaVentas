@@ -2,149 +2,24 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Ventas</title>
-<style>
-body { font-family: Arial,sans-serif; background: #f4f6f8; margin:0; }
-.container { max-width:400px; margin:30px auto; padding:20px; background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap:15px; }
-.container label { font-weight:bold; margin-bottom:5px; color:#333; }
-.container select, .container input[type="number"] { padding:10px 12px; border-radius:8px; border:1px solid #ccc; font-size:14px; width:100%; box-sizing:border-box; }
-.container select:focus, .container input[type="number"]:focus { outline:none; border-color:#1a73e8; box-shadow:0 0 5px rgba(26,115,232,0.5); }
-.container button { padding:12px; background:#1a73e8; color:white; font-weight:bold; border:none; border-radius:8px; cursor:pointer; font-size:15px; }
-.container button:hover { background:#155ab6; }
-.header { background: linear-gradient(135deg,#1a73e8,#00c6ff); color:white; padding:20px; text-align:center; border-bottom-left-radius:20px; border-bottom-right-radius:20px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
-.header h1 { margin:0; font-size:24px; letter-spacing:1px; }
-.header nav a { color:white; text-decoration:none; margin:0 10px; padding:8px 15px; border-radius:20px; font-weight:bold; }
-.header nav a.activo { background:white; color:#1a73e8; }
-.footer { background: linear-gradient(135deg,#1a73e8,#00c6ff); color:white; text-align:center; padding:20px; border-top-left-radius:15px; border-top-right-radius:15px; box-shadow:0 -2px 8px rgba(0,0,0,0.1); margin-top:30px; font-family:Arial,sans-serif; }
-.footer p { margin:5px 0; font-size:14px; }
-</style>
+<title>Inicio</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="header">
-<h1>Productos</h1>
 <nav>
-    <a href="index.html"      class="activo">Ventas</a>
- 
+    <h2>Mi Sistema</h2>
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="producto.html">Productos</a></li>
+        <li><a href="venta.html">Ventas</a></li>
+    </ul>
 </nav>
-</header>
 
 <div class="container">
-    <label>Producto</label>
-    <select id="producto"></select>
-
-    <label>Cantidad</label>
-    <input type="number" id="cantidad" min="1" placeholder="Cantidad">
-
-    <button id="btnVender">Vender</button>
-
-    <p id="mensaje"></p>
+    <h1>Bienvenido</h1>
+    <p>Gestiona productos y ventas fácilmente.</p>
 </div>
-
-<script>
-let db;
-
-// Abrir base de datos y crear objectStores si no existen
-let request = indexedDB.open("tiendaDB", 1);
-
-request.onupgradeneeded = function(e){
-    db = e.target.result;
-    if(!db.objectStoreNames.contains("productos")){
-        db.createObjectStore("productos", { keyPath:"id", autoIncrement:true });
-    }
-    if(!db.objectStoreNames.contains("ventas")){
-        db.createObjectStore("ventas", { keyPath:"id", autoIncrement:true });
-    }
-};
-
-request.onsuccess = function(e){
-    db = e.target.result;
-    cargarProductos();
-};
-
-request.onerror = function(e){
-    console.error("Error al abrir DB", e);
-};
-
-// Cargar productos en el select
-function cargarProductos(){
-    const select = document.getElementById("producto");
-    select.innerHTML = "";
-    const tx = db.transaction("productos","readonly");
-    const store = tx.objectStore("productos");
-
-    store.openCursor().onsuccess = function(e){
-        const cursor = e.target.result;
-        if(cursor){
-            const p = cursor.value;
-            select.innerHTML += `<option value="${cursor.key}">${p.nombre} (Stock: ${p.stock})</option>`;
-            cursor.continue();
-        }
-    };
-}
-
-// Función de venta
-function vender(){
-    const select = document.getElementById("producto");
-    const cantidadInput = document.getElementById("cantidad");
-    const mensaje = document.getElementById("mensaje");
-    const id = parseInt(select.value);
-    const cantidad = parseInt(cantidadInput.value);
-
-    if(!cantidad || cantidad <= 0){
-        mensaje.innerText = "Ingrese cantidad válida";
-        mensaje.style.color = "red";
-        return;
-    }
-
-    const tx = db.transaction("productos","readwrite");
-    const store = tx.objectStore("productos");
-    const req = store.get(id);
-
-    req.onsuccess = function(){
-        const producto = req.result;
-        if(!producto){
-            mensaje.innerText = "Producto no encontrado";
-            mensaje.style.color = "red";
-            return;
-        }
-
-        if(producto.stock < cantidad){
-            mensaje.innerText = "❌ No hay suficiente stock";
-            mensaje.style.color = "red";
-            return;
-        }
-
-        // Descontar stock
-        producto.stock -= cantidad;
-        store.put(producto);
-
-        // Guardar en historial de inventario (objectStore "ventas")
-        const txVentas = db.transaction("ventas","readwrite");
-        const storeVentas = txVentas.objectStore("ventas");
-        storeVentas.add({
-            producto: producto.nombre,
-            precio: producto.precio,
-            cantidad: cantidad,
-            fecha: new Date().toLocaleString()
-        });
-
-        mensaje.innerText = "✅ Venta realizada y guardada en inventario";
-        mensaje.style.color = "green";
-        cantidadInput.value = '';
-
-        // Recargar select
-        cargarProductos();
-    };
-}
-
-// Asociar botón
-document.getElementById("btnVender").addEventListener("click", vender);
-</script>
-
-<footer class="footer">
-<p>© 2026 ¡Lic. Jose Herrera!. Todos los derechos reservados.</p>
-</footer>
 
 </body>
 </html>

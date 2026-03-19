@@ -1,478 +1,83 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-/* ANIMACIÓN ENTRADA DEL MENÚ */
-.nav-links {
-    animation: aparecerMenu 0.6s ease;
-}
-/* CARDS */
-.cards {
-    display: flex;
-    gap: 20px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-}
-
-.card {
-    flex: 1;
-    background: #f1f5f9;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    background: #e2e8f0;
-}
-@keyframes aparecerMenu {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* LINKS ANIMADOS */
-.nav-links a {
-    position: relative;
-    overflow: hidden;
-}
-
-/* SUBRAYADO ANIMADO */
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: 0;
-    transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* EFECTO HOVER PRO */
-.nav-links a:hover {
-    transform: translateY(-3px) scale(1.05);
-    background: rgba(255,255,255,0.2);
-}
-
-/* EFECTO CLICK */
-.nav-links a:active {
-    transform: scale(0.95);
-}.activo {
-    background: white;
-    color: #1a73e8 !important;
-    border-radius: 8px;
-}
-/* BODY */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: #f4f6f8;
+    margin: 0;
 }
 
 /* MENU */
 .menu {
-    background: linear-gradient(135deg, #1a73e8, #2563eb);
-    padding: 20px 10px;
-    text-align: center; /* CENTRA TODO */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg,#1a73e8,#2563eb);
+    padding: 20px;
+    text-align: center;
 }
 
-/* TITULO */
 .menu h2 {
     color: white;
-    margin-bottom: 15px;
-    font-size: 22px;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
-/* LISTA */
 .nav-links {
-    list-style: none;
     display: flex;
-    justify-content: center; /* CENTRADO */
+    justify-content: center;
     gap: 30px;
-}
-
-/* ITEMS */
-.nav-links li {
     list-style: none;
 }
 
-/* LINKS */
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-weight: bold;
     padding: 8px 15px;
-    border-radius: 8px;
     transition: 0.3s;
 }
 
-/* EFECTO HOVER */
 .nav-links a:hover {
     background: rgba(255,255,255,0.2);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+}
+
+.activo {
+    background: white;
+    color: #1a73e8;
+    border-radius: 8px;
 }
 
 /* CONTENEDOR */
 .container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 30px auto;
     background: white;
     padding: 20px;
     border-radius: 10px;
 }
 
-/* INPUTS */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-/* BOTON */
-button {
-    width: 100%;
-    padding: 12px;
-    background: #1a73e8;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* TABLA */
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-/* LOGO */
-.logo {
-    position: absolute;
-    left: 20px;
-    color: white;
-}
-
-/* LINKS */
-.nav-links {
-    display: flex;
-    gap: 30px;
-    list-style: none;
-}
-
-/* LINKS ESTILO */
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    position: relative;
-    padding: 5px;
-    transition: 0.3s;
-}
-
-/* EFECTO MODERNO */
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: #fff;
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-/* HOVER SUAVE */
-.nav-links a:hover {
-    opacity: 0.8;
-}
-/* links */
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-nav {
-    background: rgba(26, 115, 232, 0.95);
-    color: white;
-    padding: 15px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;   /* centra horizontal */
-    justify-content: center; /* centra vertical */
-    
-    text-align: center;
-}
-
-/* título centrado */
-nav h2 {
-    margin-bottom: 10px;
-}
-
-/* menú centrado */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center; /* centra horizontal */
-    align-items: center;
-    gap: 25px;
-    padding: 0;
-}
-
-/* links */
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    position: relative;
-    padding: 5px 10px;
-}
-
-/* efecto animado */
-nav a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-nav {
-    display: flex;
-    justify-content: center; /* centra todo */
-    align-items: center;
-    gap: 40px;
-    background: #1a73e8;
-    padding: 15px;
-}
-
-nav h2 {
-    position: absolute;
-    left: 20px; /* deja el logo a la izquierda */
-}
-
-nav ul {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-}
-/* VARIABLES (modo moderno) */
-:root {
-    --color-primary: #1a73e8;
-    --color-secondary: #0f172a;
-    --color-bg: #f4f6f8;
-    --color-white: #ffffff;
-    --color-gray: #64748b;
-    --radius: 14px;
-    --transition: 0.3s ease;
-}
-
-/* BODY */
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #f8fafc);
-    color: var(--color-secondary);
-}
-
-/* NAV MODERNO */
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(10px);
-    background: rgba(26, 115, 232, 0.9);
-    color: white;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav h2 {
-    font-weight: 600;
-}
-
-nav ul {
-    list-style: none;
+/* CARDS */
+.cards {
     display: flex;
     gap: 20px;
+    margin: 20px 0;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    position: relative;
-    padding: 5px;
-    transition: var(--transition);
+.card {
+    flex: 1;
+    padding: 20px;
+    background: #e2e8f0;
+    text-align: center;
+    border-radius: 10px;
 }
 
-/* efecto underline animado */
-nav a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    left: 0;
-    bottom: -5px;
-    transition: var(--transition);
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* CONTENEDOR */
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: var(--color-white);
-    padding: 25px;
-    border-radius: var(--radius);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    animation: fadeIn 0.6s ease;
-}
-
-/* TITULOS */
-h1 {
-    margin-bottom: 15px;
-}
-
-/* INPUTS */
-input, select {
-    width: 100%;
-    padding: 12px;
-    border-radius: var(--radius);
-    border: 1px solid #ddd;
-    margin: 10px 0;
-    transition: var(--transition);
-}
-
-/* focus animado */
-input:focus, select:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
-    outline: none;
-}
-
-/* BOTÓN PRO */
-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: var(--radius);
-    background: linear-gradient(135deg, #1a73e8, #2563eb);
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-/* efecto hover */
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(26,115,232,0.3);
-}
-
-/* efecto click */
-button:active {
-    transform: scale(0.98);
-}
-
-/* TABLA MODERNA */
+/* TABLAS */
 table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
-    border-radius: var(--radius);
-    overflow: hidden;
 }
 
 th {
-    background: var(--color-primary);
+    background: #1a73e8;
     color: white;
-    padding: 12px;
 }
 
-td {
-    padding: 12px;
+td, th {
+    padding: 10px;
     text-align: center;
-}
-
-/* filas dinámicas */
-tr {
-    transition: var(--transition);
-}
-
-tr:hover {
-    background: #f1f5f9;
-    transform: scale(1.01);
-}
-
-/* MENSAJES */
-#mensaje {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-/* ANIMACIÓN */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* RESPONSIVE (MÓVIL) */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .container {
-        margin: 20px;
-    }
 }

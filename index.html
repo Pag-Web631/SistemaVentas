@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Inicio</title>
+<title>Sistema de Ventas</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,16 +11,71 @@
     <h2 class="logo">SISTEMA DE VENTAS</h2>
 
     <ul class="nav-links">
-        <li><a href="index.html">Inicio</a></li>
-       <li><a href="producto.html" class="activo">Productos</a></li>
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="producto.html">Productos</a></li>
         <li><a href="venta.html">Ventas</a></li>
     </ul>
 </nav>
 
 <div class="container">
-    <h1>Bienvenido</h1>
-    <p>Gestiona productos y ventas fácilmente.</p>
+
+    <h1>Bienvenido al Sistema</h1>
+    <p>Este sistema permite gestionar productos, controlar inventario y realizar ventas de manera eficiente.</p>
+
+    <!-- RESUMEN -->
+    <div class="cards">
+
+        <div class="card">
+            <h3>📦 Productos</h3>
+            <p>Administra el inventario de productos disponibles.</p>
+        </div>
+
+        <div class="card">
+            <h3>💰 Ventas</h3>
+            <p>Registra ventas y descuenta automáticamente el stock.</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Control</h3>
+            <p>Monitorea el estado de tu negocio en tiempo real.</p>
+        </div>
+
+    </div>
+
+    <!-- TABLA RESUMEN -->
+    <h2>Resumen de Inventario</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody id="resumen"></tbody>
+    </table>
+
 </div>
+
+<script>
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+function cargarResumen() {
+    let resumen = document.getElementById("resumen");
+    resumen.innerHTML = "";
+
+    productos.forEach(p => {
+        resumen.innerHTML += `
+        <tr>
+            <td>${p.nombre}</td>
+            <td>$${p.precio}</td>
+            <td>${p.stock}</td>
+        </tr>`;
+    });
+}
+
+cargarResumen();
+</script>
 
 </body>
 </html>

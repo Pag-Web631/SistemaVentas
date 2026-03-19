@@ -36,53 +36,67 @@
         </div>
     </div>
 
-    <!-- MENSAJES EMPRESA -->
-    <div class="empresa-box">
-        <div class="box">
-            <h3>📢 Mensaje Empresa</h3>
-            <p>Sistema activo y funcionando correctamente.</p>
-        </div>
+  <div class="top-panel">
 
-        <div class="box">
-            <h3>📊 Estado</h3>
-            <p>Todos los procesos operativos están en línea.</p>
+    <div class="box">📢 Mensaje Empresa<br>
+        <small>Sistema activo y funcionando correctamente.</small>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Productos</h3>
+            <p id="totalProductos">0</p>
+        </div>
+        <div class="card">
+            <h3>Stock</h3>
+            <p id="totalStock">0</p>
+        </div>
+        <div class="card">
+            <h3>Ventas</h3>
+            <p id="totalVentas">0</p>
         </div>
     </div>
 
-    <!-- DATOS -->
-    <div class="datos">
-
-        <!-- PRODUCTOS -->
-        <div class="tabla-box">
-            <h2>📦 Productos en Stock</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody id="listaProductos"></tbody>
-            </table>
-        </div>
-
-        <!-- VENTAS -->
-        <div class="tabla-box">
-            <h2>💰 Historial de Ventas</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="listaVentas"></tbody>
-            </table>
-        </div>
-
+    <div class="box">📊 Estado<br>
+        <small>Todos los procesos operativos en línea.</small>
     </div>
+
+</div>
+
+
+<div class="bottom-panel">
+
+    <!-- PRODUCTOS -->
+    <div class="tabla-box">
+        <h2>📦 Productos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody id="listaProductos"></tbody>
+        </table>
+    </div>
+
+    <!-- VENTAS -->
+    <div class="tabla-box">
+        <h2>💰 Ventas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="listaVentas"></tbody>
+        </table>
+    </div>
+
+</div>
 
 </div>
 

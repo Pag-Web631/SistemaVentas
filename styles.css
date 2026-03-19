@@ -8,7 +8,27 @@
 .nav-links {
     animation: aparecerMenu 0.6s ease;
 }
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
 
+.card {
+    flex: 1;
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: #e2e8f0;
+}
 @keyframes aparecerMenu {
     from {
         opacity: 0;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ventas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <h2>Mi Sistema</h2>
+    <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="producto.html">Productos</a></li>
+        <li><a href="venta.html">Ventas</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Realizar Venta</h1>
+
+    <select id="producto"></select>
+    <input type="number" id="cantidad" placeholder="Cantidad">
+
+    <button onclick="vender()">Vender</button>
+
+    <p id="mensaje"></p>
+</div>
+
+<script>
+let productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+function cargarProductos() {
+    let select = document.getElementById("producto");
+    select.innerHTML = "";
+
+    productos.forEach((p, i) => {
+        if (p.stock > 0) {
+            select.innerHTML += `<option value="${i}">${p.nombre} (Stock: ${p.stock})</option>`;
+        }
+    });
+}
+
+function vender() {
+    let index = document.getElementById("producto").value;
+    let cantidad = parseInt(document.getElementById("cantidad").value);
+
+    if (productos[index].stock >= cantidad) {
+        productos[index].stock -= cantidad;
+
+        localStorage.setItem("productos", JSON.stringify(productos));
+
+        document.getElementById("mensaje").innerText = "Venta realizada ✅";
+        cargarProductos();
+    } else {
+        document.getElementById("mensaje").innerText = "Stock insuficiente ❌";
+    }
+}
+
+cargarProductos();
+</script>
+
+</body>
+</html>

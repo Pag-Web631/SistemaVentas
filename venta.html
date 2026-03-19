@@ -7,57 +7,84 @@
 </head>
 <body>
 
-<nav>
-    <h2>Mi Sistema</h2>
-    <ul>
+<nav class="menu">
+    <h2>SISTEMA DE VENTAS</h2>
+    <ul class="nav-links">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="producto.html">Productos</a></li>
-        <li><a href="venta.html">Ventas</a></li>
+        <li><a href="venta.html" class="activo">Ventas</a></li>
     </ul>
 </nav>
 
 <div class="container">
-    <h1>Realizar Venta</h1>
+    <h1>Ventas</h1>
 
     <select id="producto"></select>
     <input type="number" id="cantidad" placeholder="Cantidad">
-
     <button onclick="vender()">Vender</button>
 
     <p id="mensaje"></p>
+
+    <h2>Historial</h2>
+    <table>
+        <thead>
+            <tr><th>Producto</th><th>Cantidad</th><th>Fecha</th></tr>
+        </thead>
+        <tbody id="historial"></tbody>
+    </table>
 </div>
 
 <script>
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
+let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
 
 function cargarProductos() {
-    let select = document.getElementById("producto");
-    select.innerHTML = "";
-
+    producto.innerHTML = "";
     productos.forEach((p, i) => {
         if (p.stock > 0) {
-            select.innerHTML += `<option value="${i}">${p.nombre} (Stock: ${p.stock})</option>`;
+            producto.innerHTML += `<option value="${i}">${p.nombre} (${p.stock})</option>`;
         }
     });
 }
 
 function vender() {
-    let index = document.getElementById("producto").value;
-    let cantidad = parseInt(document.getElementById("cantidad").value);
+    let i = producto.value;
+    let cant = Number(cantidad.value);
 
-    if (productos[index].stock >= cantidad) {
-        productos[index].stock -= cantidad;
+    if (productos[i].stock >= cant) {
+        productos[i].stock -= cant;
+
+        ventas.push({
+            nombre: productos[i].nombre,
+            cantidad: cant,
+            fecha: new Date().toLocaleString()
+        });
 
         localStorage.setItem("productos", JSON.stringify(productos));
+        localStorage.setItem("ventas", JSON.stringify(ventas));
 
-        document.getElementById("mensaje").innerText = "Venta realizada ✅";
+        mensaje.innerText = "Venta realizada ✅";
         cargarProductos();
+        mostrarVentas();
     } else {
-        document.getElementById("mensaje").innerText = "Stock insuficiente ❌";
+        mensaje.innerText = "Stock insuficiente ❌";
     }
 }
 
+function mostrarVentas() {
+    historial.innerHTML = "";
+    ventas.forEach(v => {
+        historial.innerHTML += `
+        <tr>
+            <td>${v.nombre}</td>
+            <td>${v.cantidad}</td>
+            <td>${v.fecha}</td>
+        </tr>`;
+    });
+}
+
 cargarProductos();
+mostrarVentas();
 </script>
 
 </body>

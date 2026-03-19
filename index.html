@@ -8,8 +8,7 @@
 <body>
 
 <nav class="menu">
-    <h2 class="logo">SISTEMA DE VENTAS</h2>
-
+    <h2>SISTEMA DE VENTAS</h2>
     <ul class="nav-links">
         <li><a href="index.html" class="activo">Inicio</a></li>
         <li><a href="producto.html">Productos</a></li>
@@ -18,63 +17,54 @@
 </nav>
 
 <div class="container">
+    <h1>Panel de Control</h1>
 
-    <h1>Bienvenido al Sistema</h1>
-    <p>Este sistema permite gestionar productos, controlar inventario y realizar ventas de manera eficiente.</p>
-
-    <!-- RESUMEN -->
     <div class="cards">
-
         <div class="card">
-            <h3>📦 Productos</h3>
-            <p>Administra el inventario de productos disponibles.</p>
+            <h3>Productos</h3>
+            <p id="totalProductos">0</p>
         </div>
-
         <div class="card">
-            <h3>💰 Ventas</h3>
-            <p>Registra ventas y descuenta automáticamente el stock.</p>
+            <h3>Stock Total</h3>
+            <p id="totalStock">0</p>
         </div>
-
         <div class="card">
-            <h3>📊 Control</h3>
-            <p>Monitorea el estado de tu negocio en tiempo real.</p>
+            <h3>Ventas</h3>
+            <p id="totalVentas">0</p>
         </div>
-
     </div>
 
-    <!-- TABLA RESUMEN -->
-    <h2>Resumen de Inventario</h2>
+    <h2>Bajo Stock</h2>
     <table>
         <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Stock</th>
-            </tr>
+            <tr><th>Producto</th><th>Stock</th></tr>
         </thead>
-        <tbody id="resumen"></tbody>
+        <tbody id="bajoStock"></tbody>
     </table>
-
 </div>
 
 <script>
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
+let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
 
-function cargarResumen() {
-    let resumen = document.getElementById("resumen");
-    resumen.innerHTML = "";
+function dashboard() {
+    document.getElementById("totalProductos").innerText = productos.length;
+
+    let totalStock = productos.reduce((a, p) => a + Number(p.stock), 0);
+    document.getElementById("totalStock").innerText = totalStock;
+
+    document.getElementById("totalVentas").innerText = ventas.length;
+
+    let bajo = document.getElementById("bajoStock");
+    bajo.innerHTML = "";
 
     productos.forEach(p => {
-        resumen.innerHTML += `
-        <tr>
-            <td>${p.nombre}</td>
-            <td>$${p.precio}</td>
-            <td>${p.stock}</td>
-        </tr>`;
+        if (p.stock <= 2) {
+            bajo.innerHTML += `<tr><td>${p.nombre}</td><td>${p.stock}</td></tr>`;
+        }
     });
 }
-
-cargarResumen();
+dashboard();
 </script>
 
 </body>

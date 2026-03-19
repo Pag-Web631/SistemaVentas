@@ -17,8 +17,10 @@
 </nav>
 
 <div class="container">
+
     <h1>Panel de Control</h1>
 
+    <!-- TARJETAS -->
     <div class="cards">
         <div class="card">
             <h3>Productos</h3>
@@ -33,6 +35,55 @@
             <p id="totalVentas">0</p>
         </div>
     </div>
+
+    <!-- MENSAJES EMPRESA -->
+    <div class="empresa-box">
+        <div class="box">
+            <h3>📢 Mensaje Empresa</h3>
+            <p>Sistema activo y funcionando correctamente.</p>
+        </div>
+
+        <div class="box">
+            <h3>📊 Estado</h3>
+            <p>Todos los procesos operativos están en línea.</p>
+        </div>
+    </div>
+
+    <!-- DATOS -->
+    <div class="datos">
+
+        <!-- PRODUCTOS -->
+        <div class="tabla-box">
+            <h2>📦 Productos en Stock</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody id="listaProductos"></tbody>
+            </table>
+        </div>
+
+        <!-- VENTAS -->
+        <div class="tabla-box">
+            <h2>💰 Historial de Ventas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="listaVentas"></tbody>
+            </table>
+        </div>
+
+    </div>
+
 </div>
 
 <script>
@@ -43,12 +94,44 @@ let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
 productos = productos.filter(p => p.stock > 0);
 localStorage.setItem("productos", JSON.stringify(productos));
 
+/* DASHBOARD */
 document.getElementById("totalProductos").innerText = productos.length;
 
 let totalStock = productos.reduce((a, p) => a + Number(p.stock), 0);
 document.getElementById("totalStock").innerText = totalStock;
 
 document.getElementById("totalVentas").innerText = ventas.length;
+
+/* MOSTRAR PRODUCTOS */
+let listaP = document.getElementById("listaProductos");
+listaP.innerHTML = "";
+
+productos.forEach(p => {
+    listaP.innerHTML += `
+    <tr>
+        <td>${p.nombre}</td>
+        <td>${p.stock}</td>
+    </tr>`;
+});
+
+/* MOSTRAR VENTAS */
+let listaV = document.getElementById("listaVentas");
+listaV.innerHTML = "";
+
+ventas.forEach(v => {
+
+    let producto = productos.find(p => p.nombre === v.nombre);
+    let precio = producto ? producto.precio : 0;
+    let total = precio * v.cantidad;
+
+    listaV.innerHTML += `
+    <tr>
+        <td>${v.nombre}</td>
+        <td>${v.cantidad}</td>
+        <td>$${precio}</td>
+        <td>$${total}</td>
+    </tr>`;
+});
 </script>
 
 </body>

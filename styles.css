@@ -1,15 +1,98 @@
 /* RESET */
-/* NAV MODERNO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+}
+
+/* MENU */
 .menu {
-    position: sticky;
-    top: 0;
-    backdrop-filter: blur(12px);
-    background: rgba(26, 115, 232, 0.85);
-    padding: 15px 30px;
-    
+    background: linear-gradient(135deg, #1a73e8, #2563eb);
+    padding: 20px 10px;
+    text-align: center; /* CENTRA TODO */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* TITULO */
+.menu h2 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+
+/* LISTA */
+.nav-links {
+    list-style: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* CENTRADO */
+    gap: 30px;
+}
+
+/* ITEMS */
+.nav-links li {
+    list-style: none;
+}
+
+/* LINKS */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* EFECTO HOVER */
+.nav-links a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* CONTENEDOR */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+/* BOTON */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* TABLA */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 /* LOGO */

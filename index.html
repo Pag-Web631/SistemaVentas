@@ -17,53 +17,77 @@
 </nav>
 
 <div class="container">
-    <h1>Panel de Control</h1>
 
+    <h1>Panel de Control</h1>
+    <p>Resumen general del sistema</p>
+
+    <!-- TARJETAS -->
     <div class="cards">
         <div class="card">
-            <h3>Productos</h3>
+            <h3>📦 Productos</h3>
             <p id="totalProductos">0</p>
         </div>
+
         <div class="card">
-            <h3>Stock Total</h3>
+            <h3>📊 Stock Total</h3>
             <p id="totalStock">0</p>
         </div>
+
         <div class="card">
-            <h3>Ventas</h3>
+            <h3>💰 Ventas</h3>
             <p id="totalVentas">0</p>
         </div>
     </div>
 
-    <h2>Bajo Stock</h2>
+    <!-- BAJO STOCK -->
+    <h2>⚠️ Productos con bajo stock</h2>
     <table>
         <thead>
-            <tr><th>Producto</th><th>Stock</th></tr>
+            <tr>
+                <th>Producto</th>
+                <th>Stock</th>
+            </tr>
         </thead>
         <tbody id="bajoStock"></tbody>
     </table>
+
 </div>
 
 <script>
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let ventas = JSON.parse(localStorage.getItem("ventas")) || [];
 
+/* 🔥 ELIMINAR AUTOMÁTICAMENTE PRODUCTOS SIN STOCK */
+productos = productos.filter(p => p.stock > 0);
+localStorage.setItem("productos", JSON.stringify(productos));
+
 function dashboard() {
+
+    // TOTAL PRODUCTOS
     document.getElementById("totalProductos").innerText = productos.length;
 
-    let totalStock = productos.reduce((a, p) => a + Number(p.stock), 0);
+    // STOCK TOTAL
+    let totalStock = productos.reduce((acc, p) => acc + Number(p.stock), 0);
     document.getElementById("totalStock").innerText = totalStock;
 
+    // TOTAL VENTAS
     document.getElementById("totalVentas").innerText = ventas.length;
 
+    // BAJO STOCK
     let bajo = document.getElementById("bajoStock");
     bajo.innerHTML = "";
 
     productos.forEach(p => {
         if (p.stock <= 2) {
-            bajo.innerHTML += `<tr><td>${p.nombre}</td><td>${p.stock}</td></tr>`;
+            bajo.innerHTML += `
+            <tr>
+                <td>${p.nombre}</td>
+                <td>${p.stock}</td>
+            </tr>`;
         }
     });
 }
+
 dashboard();
 </script>
 
